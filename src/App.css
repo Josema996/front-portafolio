@@ -616,3 +616,148 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.5px;
   margin-top: 20px;
 }
+
+
+.project-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.project-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.project-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-btn {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.slider-btn.left {
+  position: absolute;
+  left: -10px;
+}
+
+.slider-btn.right {
+  position: absolute;
+  right: -10px;
+}
+
+
+/* Tabs scroll buttons and wrapper */
+
+.tab-pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.tab-pagination {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.tab-pagination .nav-item {
+  flex: 0 0 auto;
+}
+
+.tab-scroll-btn {
+  background-color: #fff;
+  border: none;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.tab-scroll-btn.left {
+  margin-right: 10px;
+}
+
+.tab-scroll-btn.right {
+  margin-left: 10px;
+}
+
+.tab-scroll-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.project-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.project-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.project-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-btn {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.slider-btn.left {
+  position: absolute;
+  left: -10px;
+}
+
+.slider-btn.right {
+  position: absolute;
+  right: -10px;
+}
+
+
+.nav-link#projects-tabs-tab-fourth {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0 0 0 55px; /* Pancita a la izquierda */
+}
+
+.nav-link#projects-tabs-tab-fifth {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: none;
+  border-radius: 0 0 55px 0;
+}

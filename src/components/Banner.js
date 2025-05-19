@@ -63,11 +63,9 @@ export const Banner = () => {
                         <span className="tagline">Welcome to my Portfolio</span>
                         <h1>{`Hi i m Jose M. Almendro - `}<span className="wrap">{text}</span></h1>
                         <p>
-                        👨‍💻 ¡Bienvenido/a a mi portafolio virtual! Soy un apasionado programador con un enfoque en el desarrollo web y de aplicaciones. Con experiencia en diversas tecnologías como JavaScript, Python y Java, me encanta crear soluciones innovadoras y eficientes. 🚀
-
-                            🌐 Explora mi portafolio para descubrir proyectos en los que he trabajado, desde aplicaciones web interactivas hasta plataformas móviles. 📱
-
-                            💡 Estoy listo/a para colaborar en proyectos emocionantes y desafiantes. ¡Contáctame y trabajemos juntos para hacer realidad tus ideas tecnológicas! 🤝
+                        👨‍💻 ¡Hola! Soy desarrollador Full Stack con formación en Henry y la UTN, y experiencia en proyectos web con tecnologías como JavaScript, React, Node.js y .NET. Me apasiona crear soluciones funcionales, con foco en la experiencia del usuario y el rendimiento. 🚀
+🌐 En este portafolio encontrarás aplicaciones web, sistemas de gestión y otros proyectos desarrollados con compromiso y dedicación.
+🤝 Estoy abierto a colaborar en desafíos que impulsen la innovación. ¡Conectemos!
                         </p>
                         <button onClick={handleClickCV} className="vvd">Descargar CV<ArrowRightCircle size={25}/></button>
                         </div>}

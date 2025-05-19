@@ -37,7 +37,7 @@ export const Contact = () => {
     setButtonText("Sending...");
 
     try {
-      const response = await fetch("https://server-portafolio-mthnt673m-josema996.vercel.app/contact", {
+      const response = await fetch("http://localhost:3001/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
