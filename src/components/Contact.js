@@ -18,7 +18,15 @@ export const Contact = () => {
   const [status, setStatus] = useState({});
   const [formValid, setFormValid] = useState(false);
 
+  const validateEmail = (email) => {
+    const allowedDomains = ['gmail.com', 'hotmail.com', 'yahoo.com'];
+    const domain = email.split('@')[1];
+    return allowedDomains.includes(domain);
+  };
+
   const onFormUpdate = (category, value) => {
+    if (category === 'message' && value.length > 150) return;
+
     const updatedForm = {
       ...formDetails,
       [category]: value
@@ -27,25 +35,38 @@ export const Contact = () => {
     setFormDetails(updatedForm);
 
     const { firstName, lastName, email, phone, message } = updatedForm;
-    setFormValid(firstName && lastName && email && phone && message);
+
+    const isValid =
+      firstName &&
+      lastName &&
+      email &&
+      phone &&
+      message &&
+      validateEmail(email);
+
+    setFormValid(isValid);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
 
-    // Producción: usa la URL desplegada
-      const API_URL = process.env.REACT_APP_API_URL || "https://server-portafolio-mu.vercel.app";
+    const API_URL = process.env.REACT_APP_API_URL || "https://server-portafolio-mu.vercel.app";
 
+    if (!validateEmail(formDetails.email)) {
+      setStatus({ success: false, message: 'El email debe ser de Gmail, Hotmail o Yahoo.' });
+      setButtonText("Send");
+      return;
+    }
 
-      try {
-        const response = await fetch(`${API_URL}/api/contact`, {
-          method: "POST",
-           headers: {
-    "Content-Type": "application/json",
-  },
-          body: JSON.stringify(formDetails),
-        });
+    try {
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDetails),
+      });
 
       const result = await response.json();
       setFormDetails(formInitialDetails);
@@ -89,19 +110,46 @@ export const Contact = () => {
                   <form onSubmit={handleSubmit}>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
+                        <input
+                          type="text"
+                          value={formDetails.firstName}
+                          placeholder="First Name"
+                          onChange={(e) => onFormUpdate('firstName', e.target.value)}
+                        />
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)} />
+                        <input
+                          type="text"
+                          value={formDetails.lastName}
+                          placeholder="Last Name"
+                          onChange={(e) => onFormUpdate('lastName', e.target.value)}
+                        />
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="email" value={formDetails.email} placeholder="Email" onChange={(e) => onFormUpdate('email', e.target.value)} />
+                        <input
+                          type="email"
+                          value={formDetails.email}
+                          placeholder="Email"
+                          onChange={(e) => onFormUpdate('email', e.target.value)}
+                        />
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="tel" value={formDetails.phone} placeholder="Phone" onChange={(e) => onFormUpdate('phone', e.target.value)} />
+                        <input
+                          type="tel"
+                          value={formDetails.phone}
+                          placeholder="Phone"
+                          onChange={(e) => onFormUpdate('phone', e.target.value)}
+                        />
                       </Col>
                       <Col size={12} className="px-1">
-                        <textarea value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)}></textarea>
+                        <textarea
+                          value={formDetails.message}
+                          placeholder="Message"
+                          onChange={(e) => onFormUpdate('message', e.target.value)}
+                        ></textarea>
+                        <small style={{ color: formDetails.message.length > 140 ? 'red' : 'gray' }}>
+                          {150 - formDetails.message.length} caracteres restantes
+                        </small>
                       </Col>
                       <Col size={12} className="px-1">
                         <button type="submit" disabled={!formValid}>{buttonText}</button>
