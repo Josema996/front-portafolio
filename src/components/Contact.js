@@ -17,6 +17,7 @@ export const Contact = () => {
   const [buttonText, setButtonText] = useState('Send');
   const [status, setStatus] = useState({});
   const [formValid, setFormValid] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const validateEmail = (email) => {
     const allowedDomains = ['gmail.com', 'hotmail.com', 'yahoo.com'];
@@ -54,7 +55,8 @@ export const Contact = () => {
     const API_URL = process.env.REACT_APP_API_URL || "https://server-portafolio-mu.vercel.app";
 
     if (!validateEmail(formDetails.email)) {
-      setStatus({ success: false, message: 'El email debe ser de Gmail, Hotmail o Yahoo.' });
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
       setButtonText("Send");
       return;
     }
@@ -167,6 +169,27 @@ export const Contact = () => {
           </Col>
         </Row>
       </Container>
+
+      {/* ✅ Toast de error */}
+      {showToast && (
+        <div style={toastStyle}>
+          ❌ Debes ingresar un email válido de Gmail, Hotmail o Yahoo
+        </div>
+      )}
     </section>
   );
+};
+
+// ✅ Estilo simple para el toast
+const toastStyle = {
+  position: 'fixed',
+  bottom: '20px',
+  right: '20px',
+  backgroundColor: '#ff4d4f',
+  color: 'white',
+  padding: '12px 16px',
+  borderRadius: '8px',
+  boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+  zIndex: 9999,
+  fontWeight: 'bold',
 };
