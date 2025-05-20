@@ -36,14 +36,8 @@ export const Contact = () => {
     setFormDetails(updatedForm);
 
     const { firstName, lastName, email, phone, message } = updatedForm;
-
     const isValid =
-      firstName &&
-      lastName &&
-      email &&
-      phone &&
-      message &&
-      validateEmail(email);
+      firstName && lastName && email && phone && message && validateEmail(email);
 
     setFormValid(isValid);
   };
@@ -133,6 +127,13 @@ export const Contact = () => {
                           value={formDetails.email}
                           placeholder="Email"
                           onChange={(e) => onFormUpdate('email', e.target.value)}
+                          style={{
+                            border:
+                              formDetails.email &&
+                              !validateEmail(formDetails.email)
+                                ? '2px solid red'
+                                : undefined
+                          }}
                         />
                       </Col>
                       <Col size={12} sm={6} className="px-1">
@@ -154,7 +155,7 @@ export const Contact = () => {
                         </small>
                       </Col>
                       <Col size={12} className="px-1">
-                        <button type="submit" disabled={!formValid}>{buttonText}</button>
+                        <button type="submit">{buttonText}</button>
                       </Col>
                     </Row>
                   </form>
@@ -170,17 +171,17 @@ export const Contact = () => {
         </Row>
       </Container>
 
-      {/* ✅ Toast de error */}
+      {/* ✅ Toast de error por email inválido */}
       {showToast && (
         <div style={toastStyle}>
-          ❌ Debes ingresar un email válido de Gmail, Hotmail o Yahoo
+          ❌ Ingresá un email válido de <strong>Gmail, Hotmail o Yahoo</strong>
         </div>
       )}
     </section>
   );
 };
 
-// ✅ Estilo simple para el toast
+// ✅ Estilo para el toast
 const toastStyle = {
   position: 'fixed',
   bottom: '20px',
@@ -192,4 +193,5 @@ const toastStyle = {
   boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
   zIndex: 9999,
   fontWeight: 'bold',
+  animation: 'fadeInUp 0.3s ease-in-out',
 };
